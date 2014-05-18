@@ -466,18 +466,19 @@ Copyright (C) 2012  James Roberts
     <string name="github_gharrington">https://github.com/gharrington</string>
     <string name="github_piomasaki">https://github.com/Pio-masaki</string>
     <string name="github_zDeuce2">https://github.com/ZDeuce2</string>
+	<string name="github_marcoxx626">https://github.com/marcoxx626</string>
     <!-- About IOAP -->
-    <string name="about_ioap_settings_title">About IOAP</string>
-    <string name="about_ioap">About IOAP</string>
+    <string name="about_ioap_settings_title">About Infamous</string>
+    <string name="about_ioap">About Infamous</string>
     <string name="about_ioap_summary">@null</string>
     <string name="contributors_title">Contributor(s)</string>
-    <string name="facebook_ioap">http://www.facebook.com/Infamous</string>
-    <string name="gplus_ioap">https://plus.google.com/+Infamous</string>
-    <string name="name_ioap">IOAP</string>
-    <string name="github_ioap">https://github.com/IOAP</string>
-    <string name="email_ioap">infamous@gmail.com</string>
-    <string name="twitter_ioap">IOKP</string>
-    <string name="ioap_site_title">IOAP Website</string>
-    <string name="ioap_site_summary">Visit the IOAP website for latest news.</string>
-    <string name="google_ioap">https://plus.google.com/+Infamous/about</string>
+    <string name="facebook_ioap">https://www.facebook.com/infamousdevelopment</string>
+    <string name="gplus_ioap">https://plus.google.com/communities/106093160117198923912</string>
+    <string name="name_ioap">Infamous</string>
+    <string name="github_ioap">https://github.com/jamison904</string>
+    <string name="email_ioap">infamousrom@gmail.com</string>
+    <string name="twitter_ioap">Jamison904</string>
+    <string name="ioap_site_title">Infamous Website</string>
+    <string name="ioap_site_summary">Visit the Infamous website for latest news.</string>
+    <string name="google_ioap">https://plus.google.com/communities/106093160117198923912</string>
 </resources>

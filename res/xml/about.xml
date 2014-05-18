@@ -19,13 +19,13 @@
 			android:summary="@string/ioap_site_summary"/>
 
 		<com.infamous.performance.widget.DeveloperPreference
-			android:title="IOAP"
-			rb:nameDev="IOAP"
+			android:title="Infamous Development"
+			rb:nameDev="Infamous"
 			rb:facebookLink="@string/facebook_ioap"
 			rb:githubLink="@string/github_ioap"
-			rb:twitterHandle="IOKP"
+			rb:twitterHandle="jamison904"
 			rb:googleLink="@string/google_ioap"
-			rb:emailDev="infamous@gmail.com"/>
+			rb:emailDev="infamousrom@gmail.com"/>
 
 	</PreferenceCategory>
 
@@ -34,12 +34,109 @@
 		android:title="@string/devs">
 
 		<com.infamous.performance.widget.DeveloperPreference
-			android:title="IOAP"
-			rb:nameDev="@string/name_ioap"
-			rb:twitterHandle="@string/twitter_ioap"
-			rb:githubLink="@string/github_ioap"
+			android:title="Jamison904"
+			rb:nameDev="Jamison904"
+			rb:twitterHandle="jamison904"
+			rb:githubLink="@string/github_jamison904"
 			rb:googleLink="@string/gplus_ioap"
-			rb:emailDev="@string/email_ioap"/>
+			rb:emailDev="james.jamison85@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="mrimp"
+			rb:nameDev="mrimp"
+			rb:twitterHandle="mrimp"
+			rb:githubLink="@string/github_mrimp"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="mrimp@day-off.net"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="Mdjmatt604"
+			rb:nameDev="djmatt604"
+			rb:twitterHandle="MattBylander"
+			rb:githubLink="@string/github_djmatt604"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="djmatt604@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="Octane70"
+			rb:nameDev="Octane70"
+			rb:twitterHandle="IOKP_ROM"
+			rb:githubLink="@string/github_octane70"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="robczepil@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="MidnightRider67"
+			rb:nameDev="MidnightRider67"
+			rb:twitterHandle="jerrymarshall67"
+			rb:githubLink="@string/github_midnightRider67"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="jerrymarshall67@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="mgbotoe"
+			rb:nameDev="mgbotoe"
+			rb:twitterHandle="mgbotoe"
+			rb:githubLink="@string/github_mgbotoe"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="mgbotoe@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="nolinuxnoparty"
+			rb:nameDev="nolinuxnoparty"
+			rb:twitterHandle="nolinuxnoparty"
+			rb:githubLink="@string/github_nolinuxnoparty"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="nolinuxnoparty@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="inphamous36"
+			rb:nameDev="inphamous36"
+			rb:twitterHandle="inphamous36"
+			rb:githubLink="@string/github_inphamous36"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="ben.hickerson36@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="Jovy23"
+			rb:nameDev="Jovy23"
+			rb:twitterHandle="IOKP_ROM"
+			rb:githubLink="@string/github_jovy23"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="jovyflow3@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="XxWhiterhinoxX"
+			rb:nameDev="XxWhiterhinoxX"
+			rb:twitterHandle="X_WhiTeRhiNo_X"
+			rb:githubLink="@string/github_xxWhiterhinoxx"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="Whiterhino0707@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="ZDeuce2"
+			rb:nameDev="ZDeuce2"
+			rb:twitterHandle="ZDeuce2"
+			rb:githubLink="@string/github_zDeuce2"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="zschenz@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="Pio-masaki"
+			rb:nameDev="Pio-masaki"
+			rb:twitterHandle="IOKP_ROM"
+			rb:githubLink="@string/github_piomasaki"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="piomasaki@gmail.com"/>
+		
+		<com.infamous.performance.widget.DeveloperPreference
+			android:title="marcoxx626"
+			rb:nameDev="marcoxx626"
+			rb:twitterHandle="marcoxx626"
+			rb:githubLink="@string/github_marcoxx626"
+			rb:googleLink="@string/gplus_ioap"
+			rb:emailDev="marcoxx626@gmail.com"/>
+		
 
 	</PreferenceCategory>
 
