@@ -110,4 +110,12 @@ File contain partitions layout for flashing kernel & recovery
         <recovery>/dev/block/platform/sdhci-tegra.3/by-name/SOS</recovery>
         <cache>/dev/block/platform/sdhci-tegra.3/by-name/CAC</cache>
     </device>
+    <!--2.0-->
+    <!-- Ouya game system-->
+    <device>
+        <model>ouya</model>
+        <kernel>/dev/block/platform/sdhci-tegra.3/by-name/LNX</kernel>
+        <recovery>/dev/block/platform/sdhci-tegra.3/by-name/SOS</recovery>
+        <cache>/dev/block/platform/sdhci-tegra.3/by-name/CAC</cache>
+    </device>
 </devices>
