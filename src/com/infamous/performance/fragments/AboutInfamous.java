@@ -99,7 +99,7 @@ public class AboutInfamous extends PreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSiteUrl) {
-            launchUrl("http://www.infamousdevelopment.com");
+            launchUrl("http://infamousproductions.github.io/");
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
