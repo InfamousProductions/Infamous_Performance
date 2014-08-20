@@ -93,8 +93,12 @@ public class GovSetActivity extends Activity implements Constants, AdapterView.O
                         }
                     }
                     final String r=Helpers.shExec(sb,context,true);
-                    if((r==null)||!r.equals("nok"))
+                    if((r==null)||!r.equals("nok")) {
                         Toast.makeText(context, getString(R.string.applied_ok), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(INTENT_PP);
+                        intent.putExtra("from",getString(R.string.app_name));
+                        context.sendBroadcast(intent);
+                    }
                 }
             }
         });

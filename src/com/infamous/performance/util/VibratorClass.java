@@ -1,8 +1,6 @@
 package com.infamous.performance.util;
 
-import android.provider.SyncStateContract;
 import android.util.Log;
-
 import java.io.File;
 
 /**
@@ -18,8 +16,6 @@ public class VibratorClass implements Constants {
         return min;
     }
     public int get_max(){
-
-
         return max;
     }
     public String get_val(String p){

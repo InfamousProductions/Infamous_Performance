@@ -66,7 +66,8 @@ public class Tools extends PreferenceFragment implements OnSharedPreferenceChang
     private EditText settingText;
     private Boolean isrun=false;
     private ProgressDialog progressDialog;
-    private Preference mResidualFiles,mOptimDB,mlogcat;
+    private Preference mResidualFiles;
+    private Preference mOptimDB;
     private Context context;
     private String nf;
     private String dn;
@@ -81,7 +82,7 @@ public class Tools extends PreferenceFragment implements OnSharedPreferenceChang
         dn= mPreferences.getString("int_sd_path", Environment.getExternalStorageDirectory().getAbsolutePath())+"/"+TAG+"/logs";
         addPreferencesFromResource(R.layout.tools);
 
-        new CMDProcessor().sh.runWaitFor("busybox mkdir -p "+dn );
+        new File(dn).mkdirs();
 
         mResidualFiles= findPreference(RESIDUAL_FILES);
         mOptimDB= findPreference(PREF_OPTIM_DB);
@@ -96,16 +97,16 @@ public class Tools extends PreferenceFragment implements OnSharedPreferenceChang
         if (mStartTime>0)
             mOptimDB.setSummary(DateUtils.getRelativeTimeSpanString(mStartTime));
 
-        mlogcat= findPreference("pref_logcat");
-        mlogcat.setSummary(getString(R.string.ps_logs,dn));
-        mlogcat= findPreference("pref_dmesg");
-        mlogcat.setSummary(getString(R.string.ps_logs,dn));
+        Preference mlogcat = findPreference("pref_logcat");
+        mlogcat.setSummary(getString(R.string.ps_logs, dn));
+        mlogcat = findPreference("pref_dmesg");
+        mlogcat.setSummary(getString(R.string.ps_logs, dn));
 
-        if(Helpers.binExist("dd").equals(NOT_FOUND) || NO_FLASH){
+        if(Helpers.binExist("dd")==null || NO_FLASH){
             PreferenceCategory hideCat = (PreferenceCategory) findPreference("category_flash_img");
             getPreferenceScreen().removePreference(hideCat);
         }
-        if(Helpers.binExist("pm").equals(NOT_FOUND)){
+        if(Helpers.binExist("pm")==null){
             PreferenceCategory hideCat = (PreferenceCategory) findPreference("category_freezer");
             getPreferenceScreen().removePreference(hideCat);
         }
@@ -113,7 +114,7 @@ public class Tools extends PreferenceFragment implements OnSharedPreferenceChang
             PreferenceCategory hideCat = (PreferenceCategory) findPreference("category_build_prop");
             getPreferenceScreen().removePreference(hideCat);
         }
-        if(Helpers.binExist("sysctl").equals(NOT_FOUND)){
+        if(Helpers.binExist("sysctl")==null){
             PreferenceCategory hideCat = (PreferenceCategory) findPreference("category_sysctl");
             getPreferenceScreen().removePreference(hideCat);
         }

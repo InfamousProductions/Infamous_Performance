@@ -1,12 +1,12 @@
-
+##
 ### PERFORMANCE CONTROL ###
 set_val() {
     if busybox [ "`busybox find \"$1\" -prune -perm -200`" ]; then
         busybox echo $2 > $1;
     else
-        busybox chmod a+w $1;
+        busybox chmod u+w $1;
         busybox echo $2 > $1;
-        busybox chmod a-w $1;
+        busybox chmod u-w $1;
     fi;
 }
 mpdecisionstart(){

@@ -21,9 +21,9 @@ File contain partitions layout for flashing kernel & recovery
         <recovery>/dev/block/mmcblk0p6</recovery>
         <cache>/dev/block/mmcblk0p8</cache>
     </device>
-    <!-- GALAXY S IV,NEXUS 4,XPERIA Z,Samsung Galaxy S4 SGH-M919 SM-N900T SM-G900T -->
+    <!-- GALAXY S IV,NEXUS 4,NEXUS 5,XPERIA Z,Samsung Galaxy S4 SGH-M919, SM-N900T, SM-G900T GALAXY S4 Mini-->
     <device>
-        <model>GT-I9505,Nexus 4,LG-E960,C6603,SGH-M919,SM-N900T,SM-G900T</model>
+        <model>GT-I9505,Nexus 4,Nexus 5,LG-E960,C6603,SGH-M919,SM-N900T,SM-G900T,GT-I9190,GT-I9195</model>
         <kernel>/dev/block/platform/msm_sdcc.1/by-name/boot</kernel>
         <recovery>/dev/block/platform/msm_sdcc.1/by-name/recovery</recovery>
         <cache>/dev/block/platform/msm_sdcc.1/by-name/cache</cache>
@@ -110,10 +110,32 @@ File contain partitions layout for flashing kernel & recovery
         <recovery>/dev/block/platform/sdhci-tegra.3/by-name/SOS</recovery>
         <cache>/dev/block/platform/sdhci-tegra.3/by-name/CAC</cache>
     </device>
+        <device>
+        <model>ST25,ST25i,ST25a,Xperia U,kumquat</model> <!-- Sony Xperia U kumquat -->
+        <kernel>/dev/block/mmcblk0p9</kernel>
+        <recovery>/dev/block/mmcblk0p9</recovery>
+        <cache>/dev/block/mmcblk0p12</cache>
+    </device>
+    <!-- New devices added by Rizal Lovins -->
+	<device>
+        <model>LT25i,LT29i,LT30a,LT30p,C5302,C5303</model> <!-- Sony Xperia T-TL-TX-V-SP -->
+        <kernel>/dev/block/mmcblk0p4</kernel>
+        <recovery>/dev/block/mmcblk0p4</recovery>
+        <cache>/dev/block/mmcblk0p12</cache>
+    </device>
+
+    <!-- Galaxy Grand Duos GT-i9082 added by Triprex -->
+    <device>
+        <model>GT-i9082</model>
+        <kernel>/dev/block/mmcblk0p5</kernel>
+        <recovery>/dev/block/mmcblk0p6</recovery>
+        <cache>/dev/block/mmcblk0p18</cache>
+    </device>
+
     <!--2.0-->
     <!-- Ouya game system-->
     <device>
-        <model>ouya_1_1, Ouya, ouya, ouya_failsafe</model>
+        <model>ouya_1_1, Ouya_1_1, Ouya, ouya, ouya_failsafe, Ouya_failsafe</model>
         <kernel>/dev/block/platform/sdhci-tegra.3/by-name/LNX</kernel>
         <recovery>/dev/block/platform/sdhci-tegra.3/by-name/SOS</recovery>
         <cache>/dev/block/platform/sdhci-tegra.3/by-name/CAC</cache>

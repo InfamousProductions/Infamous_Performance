@@ -21,7 +21,7 @@ package com.infamous.performance.util;
 public interface Constants {
 
     public static final String TAG = "PerformanceControl";
-    public static final String VERSION_NUM = "2.1.14";
+    public static final String VERSION_NUM = "3.6";
     //hide flashing kernel/recovery options
     // NO_FLASH=true > hide flash options
     // NO_FLASH=false > show flash options
@@ -37,7 +37,7 @@ public interface Constants {
     public static final String MAX_FREQ_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
     public static final String TEGRA_MAX_FREQ_PATH = "/sys/module/cpu_tegra/parameters/cpu_user_cap";
     public static final String MIN_FREQ_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
-    public static final String STEPS_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies";
+    //public static final String STEPS_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies";
     public static final String GOVERNORS_LIST_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
     public static final String GOVERNOR_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor";
     public static final String IO_SCHEDULER_PATH = "/sys/block/mmcblk0/queue/scheduler";
@@ -47,6 +47,8 @@ public interface Constants {
     //Dynamic frequency scaling
     public static final String DYN_MAX_FREQ_PATH = "/sys/power/cpufreq_max_limit";
     public static final String DYN_MIN_FREQ_PATH = "/sys/power/cpufreq_min_limit";
+
+    public static final String HARD_LIMIT_PATH="/sys/kernel/cpufreq/hardlimit";
     
     public static final String NUM_OF_CPUS_PATH = "/sys/devices/system/cpu/present";
 
@@ -59,6 +61,7 @@ public interface Constants {
     public static final String GOV_SETTINGS_PATH = "/sys/devices/system/cpu/cpufreq/";
 
     public static final String MC_PS="/sys/devices/system/cpu/sched_mc_power_savings";//multi core power saving
+    public static final String MSM_HOTPLUG="/sys/module/msm_hotplug/msm_enabled";
     public static final String INTELLI_PLUG="/sys/module/intelli_plug/parameters/intelli_plug_active";
     public static final String ECO_MODE="/sys/module/intelli_plug/parameters/eco_mode_active";
     public static final String GEN_HP="/sys/module/omap2plus_cpufreq/parameters/generic_hotplug";//generic hotplug
@@ -101,12 +104,10 @@ public interface Constants {
     public static final String[] KSM_FULLSCANS_PATH = {"/sys/kernel/mm/ksm/full_scans","/sys/kernel/mm/uksm/full_scans"};
     public static final String[] KSM_PAGESSHARED_PATH = {"/sys/kernel/mm/ksm/pages_shared","/sys/kernel/mm/uksm/pages_shared"};
     public static final String[] KSM_PAGESSHARING_PATH = {"/sys/kernel/mm/ksm/pages_sharing","/sys/kernel/mm/uksm/pages_sharing"};
-    public static final String[] KSM_PAGESTOSCAN_PATH = {"/sys/kernel/mm/ksm/pages_to_scan","/sys/kernel/mm/uksm/pages_to_scan"};
     public static final String[] KSM_PAGESUNSHERED_PATH = {"/sys/kernel/mm/ksm/pages_unshared","/sys/kernel/mm/uksm/pages_unshared"};
     public static final String[] KSM_PAGESVOLATILE_PATH = {"/sys/kernel/mm/ksm/pages_volatile","/sys/kernel/mm/uksm/pages_volatile"};
     public static final String[] KSM_SLEEP_TIMES_PATH = {"/sys/kernel/mm/ksm/sleep_times","/sys/kernel/mm/uksm/sleep_times"};
     public static final String[] KSM_PAGESSCANNED_PATH = {"/sys/kernel/mm/ksm/pages_scanned","/sys/kernel/mm/uksm/pages_scanned"};
-    public static final String[] KSM_SLEEP_PATH = {"/sys/kernel/mm/ksm/sleep_millisecs","/sys/kernel/mm/uksm/sleep_millisecs"};
     public static final String PREF_RUN_KSM = "pref_run_ksm";
     public static final String KSM_SOB = "ksm_boot";
 
@@ -181,7 +182,7 @@ public interface Constants {
     //Tools
     public static final String PREF_SH = "pref_sh";
     public static final String PREF_WIPE_CACHE = "pref_wipe_cache";
-    public static final String NOT_FOUND = "not found";
+    //public static final String NOT_FOUND = "not found";
     public static final String FLASH_KERNEL = "pref_kernel_img";
     public static final String FLASH_RECOVERY = "pref_recovery_img";
     public static final String RESIDUAL_FILES="pref_residual_files";
@@ -243,7 +244,19 @@ public interface Constants {
     public static final String PREF_WIDGET_BG_COLOR = "widget_bg_color";
     public static final String PREF_WIDGET_TEXT_COLOR = "widget_text_color";
 
+    //Krait undervolt
+    public static final String KRAIT_ON_PATH = "/sys/module/acpuclock_krait/parameters/boost";
+    public static final String KRAIT_LOWER_PATH = "/sys/module/acpuclock_krait/parameters/lower_uV";
+    public static final String KRAIT_HIGH_PATH = "/sys/module/acpuclock_krait/parameters/higher_uV";
+    public static final String KRAIT_THRES_PATH = "/sys/module/acpuclock_krait/parameters/higher_khz_thres";
+
+    //live oc
+    public static final String OC_VALUE_PATH = "/sys/class/misc/liveoc/oc_value";
+    public static final String OC_HIGH_PATH = "/sys/class/misc/liveoc/oc_target_high";
+    public static final String OC_LOW_PATH = "/sys/class/misc/liveoc/oc_target_low";
+
     public static final String INTENT_PP="com.h0rn3t.performanceprofile.change_system";
+    public static final String INIT_D="system/etc/init.d/";
 }
 
 

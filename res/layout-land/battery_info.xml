@@ -49,9 +49,10 @@ Copyright (C) 2012  James Roberts
                     android:id="@+id/batt_volt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="50sp"
-                android:visibility="gone"
-                android:layout_marginBottom="6dip" />
+                    android:textSize="46sp"
+                android:layout_marginBottom="6dip"
+                android:padding="6dp"
+                android:visibility="gone" />
             <TextView
                     android:id="@+id/batt_percent"
                     android:layout_width="wrap_content"
@@ -133,6 +134,32 @@ Copyright (C) 2012  James Roberts
                         android:id="@+id/fastcharge_sob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/no_settings"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:id="@+id/attn"
+                    android:src="@drawable/ic_attn" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_settings"
+                    android:id="@+id/textView"
+                    android:gravity="center_horizontal"
+                    android:alpha="0.5"
+                    android:textSize="16sp" />
+
             </LinearLayout>
 
         </LinearLayout>

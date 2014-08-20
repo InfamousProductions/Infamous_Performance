@@ -23,21 +23,21 @@ Copyright (C) 2012  James Roberts
               android:layout_height="wrap_content"
               android:layout_gravity="center_vertical"
               android:orientation="horizontal"
-              android:paddingLeft="5dp"
-              android:paddingRight="5dp">
+    android:padding="10dp">
 
     <EditText
             android:id="@+id/setting_text"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
     <SeekBar
             android:id="@+id/seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"/>
+            android:layout_marginTop="10dip"
+        android:layout_marginLeft="20dp" />
 
 </LinearLayout>

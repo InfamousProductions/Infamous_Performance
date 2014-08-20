@@ -358,13 +358,15 @@ Copyright (C) 2012  James Roberts
     <string name="mpdecision">MPDECISION</string>
     <string name="pt_mpdecision">Enable MPDecision</string>
 
+    <string name="msmhotplug">MSM HOTPLUG</string>
+    <string name="pt_msmhotplug">Enable MSM Hotplug</string>
     <string name="intelliplug">INTELLIPLUG</string>
     <string name="pt_intelliplug">Enable Intelliplug</string>
     <string name="ecomode">ECOMODE</string>
     <string name="pt_ecomode">Enable EcoMode</string>
     <string name="so_min_max">SCREEN OFF FREQUENCIES</string>
     <string name="pt_so_max">Screen off maximum frequency</string>
-    <string name="ps_so_minmax">Current value: </string>
+    <string name="ps_so_minmax">"Current: "</string>
     <string name="pt_so_min">Screen off minimum frequency</string>
 
     <string name="prefcat_touchscr">TOUCHSCREEN</string>
@@ -398,7 +400,6 @@ Copyright (C) 2012  James Roberts
     <string name="pt_update">What\'s new</string>
     <string name="ps_zram_info">Zram must be stopped in order to change disk size</string>
     <!-- beta2-->
-	<string name="mem_info">ИНФОРМАЦИЯ О ПАМЯТИ</string>
     <!-- 2.1.10-->
     <string name="prefcat_wifi_pm">WiFi SLEEP POWER MODE</string>
     <string name="pt_wifi_pm">WiFi PM</string>
@@ -410,21 +411,20 @@ Copyright (C) 2012  James Roberts
     <string name="pt_hp">Generic Hotplug</string>
     <string name="ps_hp">Disable one core when screen is off</string>
     <string name="pt_cpuquiet">CPUQuiet Governor</string>
-    <string name="ps_cpuquiet">Controls which CPU cores are available and when | Current: %s</string>
+    <string name="ps_cpuquiet">Controls which CPU cores are available and when | Current: </string>
     <string name="pt_hotplug">Hotplug Control</string>
     <string name="thermal">THERMAL</string>
     <string name="pt_thermal">Thermal Control</string>
     <string name="mt_mem_usage">Memory Usage</string>
     <string name="pt_drop_caches">Clean drop caches</string>
     <string name="oom_default">Default values</string>
-    <string name="ps_mc_ps">Try to group tasks into the least cores possible | Current: %s</string>
+    <string name="ps_mc_ps">Try to group tasks into the least cores possible | Current: </string>
     <string-array name="mc_ps_array">
         <item>Off</item>
         <item>On</item>
         <item>Agressive</item>
     </string-array>
-    <string name="pt_gpu_fmax">GPU maxim frequency</string>
-    <string name="ps_gpu_fmax">Current: %s</string>
+    <string name="pt_gpu_fmax">GPU maximum frequency</string>
     <string name="pt_gpugov_set">GPU Control</string>
     <!-- 2.1.13-->
     <string name="pt_int_sd">Override Internal SD Path</string>
@@ -433,6 +433,49 @@ Copyright (C) 2012  James Roberts
     <string name="ksm_sleep_times">Sleep times:</string>
     <string name="ksm_pages_scanned">Pages Scanned:</string>
     <string name="info_auto_sd">Leave blank for autodetection</string>
+        <!--2.1.15-->
+    <string name="krait">Undervolting Settings</string>
+    <string name="pt_krait_boost">Decrease voltage</string>
+    <string name="ps_krait_boost">The voltage is decreased by 25mV for Nominal, Fast and Faster bin chips if enabled</string>
+    <string name="pt_krait_thres">Threshold frequency</string>
+    <string name="pt_krait_hi">Voltage for higher frequencies</string>
+    <string name="ps_krait_hi">Apply for frequencies higher than threshold | Current: %s μV</string>
+    <string name="pt_krait_lo">Voltage for lower frequencies</string>
+    <string name="ps_krait_lo">Apply for frequencies lower than threshold | Current: %s μV</string>
+    <!--2.1.16-->
+    <string name="donor">Donate with PayPal</string>
+    <string name="paypal">If you find this app useful</string>
+    <!--2.1.18-->
+    <string name="liveoc">Live OC</string>
+    <string name="oc_value">OC Value (%)</string>
+    <string name="oc_target_low">OC Target Low</string>
+    <string name="oc_target_high">OC Target High</string>
+
+    <string name="pt_initd">Use init.d script</string>
+    <string name="pt_script_name">Script name</string>
+    <string name="mt_calib">Calibrate</string>
+    <string name="mt_calib_nok">Your device must be plugged and fully charged.</string>
+    <string name="mt_calib_ok">Tap on Calibrate button then unplug the device.</string>
+    <string name="mt_calib_chk">Reboot after calibration</string>
+    <string name="boot_wait">Please wait until boot sequence is finished…</string>
+    <string name="no_file">%s does not exist !</string>
+    <string name="exist_file">%s already exist !</string>
+    <string name="no_settings">No advanced settings available</string>
+    <string name="bk_name">Backup name</string>
+    <string name="bk_ok">Backup operation succeeded.</string>
+    <string name="bk_nok">Error ! Backup operation failed.</string>
+
+    <string name="err_file">Error ! Can\'t create folder %s</string>
+    <string name="backup_restore">Backup and Restore data</string>
+
+    <string name="bkup_del_title">Delete Backup</string>
+    <string name="no_bkup_info">No Backups</string>
+    <string name="no_bkup_sinfo">Use menu to create backup.</string>
+    <string name="bkup_info">Tap on item to restore it. Longtap to delete it.</string>
+    <string name="no">NO</string>
+    <string name="create_bkup">Create Backup</string>
+    <string name="restore_bkup_title">Restore Backup</string>
+    <string name="restore_bkup">%s will be restored. Continue?</string>
 	<!--Infamous-->
 	<string name="devs">The Crew</string>
 	<string name="iokp">Infamous Open Kang Project</string>
@@ -448,7 +491,7 @@ Copyright (C) 2012  James Roberts
     <string name="aokp_irc_summary">#teamkang @ irc.freenode.net</string>
     <string name="about_iokp">About Infamous</string>
     <string name="about_iokp_summary">@null</string>
-    <string name="donate_iokp">http://goo.gl/V01Vqx
+    <string name="donate_iokp">http://goo.gl/Gw2Lf9
     </string>
     <string name="github_iokp">https://github.com/IOKP</string>
     <string name="github_midnightRider67">https://github.com/MidnightRider67</string>
@@ -466,7 +509,7 @@ Copyright (C) 2012  James Roberts
     <string name="github_gharrington">https://github.com/gharrington</string>
     <string name="github_piomasaki">https://github.com/Pio-masaki</string>
     <string name="github_zDeuce2">https://github.com/ZDeuce2</string>
-	<string name="github_marcoxx626">https://github.com/marcoxx626</string>
+    <string name="github_marcoxx626">https://github.com/marcoxx626</string>
     <!-- About IOAP -->
     <string name="about_ioap_settings_title">About Infamous</string>
     <string name="about_ioap">About Infamous</string>

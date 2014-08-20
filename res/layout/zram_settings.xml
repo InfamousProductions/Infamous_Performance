@@ -9,18 +9,26 @@
         android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="20dip"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:id="@+id/preview"
         android:paddingBottom="20dip">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prefcat_zram"
+            android:id="@+id/cur"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp" />
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:id="@+id/relativeLayout1"
             android:paddingLeft="10dp"
@@ -38,7 +46,6 @@
                 android:id="@+id/t1"
                 android:textSize="18dip"
                 android:textStyle="bold"
-                android:layout_alignParentEnd="true"
                 android:gravity="right"/>
         </LinearLayout>
 
@@ -64,14 +71,12 @@
                 android:id="@+id/t2"
                 android:textSize="18dip"
                 android:textStyle="bold"
-                android:layout_alignParentEnd="true"
                 android:gravity="right" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:id="@+id/relativeLayout3"
             android:paddingLeft="10dp"
@@ -89,14 +94,12 @@
                 android:id="@+id/t3"
                 android:textSize="18dip"
                 android:textStyle="bold"
-                android:layout_alignParentEnd="true"
                 android:gravity="right"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:id="@+id/relativeLayout4"
             android:paddingLeft="10dp"
@@ -114,14 +117,12 @@
                 android:id="@+id/t4"
                 android:textSize="18dip"
                 android:textStyle="bold"
-                android:layout_alignParentEnd="true"
                 android:gravity="right"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:id="@+id/relativeLayout5"
             android:paddingLeft="10dp"
@@ -139,7 +140,6 @@
                 android:id="@+id/t5"
                 android:textSize="18dip"
                 android:textStyle="bold"
-                android:layout_alignParentEnd="true"
                 android:gravity="right"/>
         </LinearLayout>
 
@@ -159,7 +159,7 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zram_disk_size"
             android:id="@+id/tval1"
@@ -169,7 +169,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/val1"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp" />
 

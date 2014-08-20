@@ -55,6 +55,9 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
     private String mFastChargePath;
     private Context context;
     private BroadcastReceiver batteryInfoReceiver;
+    private int level,plugged;
+    private boolean no_settings=true;
+    private final String bstatfile="/data/system/batterystats.bin";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,19 +67,25 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
         batteryInfoReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+
                 //int  health= intent.getIntExtra(BatteryManager.EXTRA_HEALTH,0);
                 //String  technology= intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
-                //int  plugged= intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,0);
                 //boolean  present= intent.getExtras().getBoolean(BatteryManager.EXTRA_PRESENT);
+                //int  rawvoltage= intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE,0);
+
+                plugged= intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,0);
                 int  scale= intent.getIntExtra(BatteryManager.EXTRA_SCALE,0);
-                int  level= intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
+                int  lev= intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
                 int  status= intent.getIntExtra(BatteryManager.EXTRA_STATUS,0);
                 int  temperature= intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,0);
-                int  rawvoltage= intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE,0);
 
-                level=level*scale/100;
+                level=lev*scale/100;
                 mbattery_percent.setText(level+"%");
-
+                if (new File(BAT_VOLT_PATH).exists()) {
+                    int volt = Integer.parseInt(Helpers.readOneLine(BAT_VOLT_PATH));
+                    if (volt > 5000) volt = (int) Math.round(volt / 1000.0);// in microvolts
+                    mbattery_volt.setText(volt + " mV");
+                }
                 switch ((int) Math.ceil(level / 20.0)){
                     case 0:
                         mBattIcon.setImageResource(R.drawable.battery_0);
@@ -108,7 +117,7 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.batt_menu, menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -116,10 +125,58 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
             case R.id.tablist:
                 Helpers.getTabList(getString(R.string.menu_tab),(ViewPager) getView().getParent(),getActivity());
                 break;
-                case R.id.app_settings:
+            case R.id.app_settings:
                 Intent intent = new Intent(context, PCSettings.class);
                 startActivity(intent);
-            break;
+                break;
+            case R.id.calib:
+                if(!new File(bstatfile).exists()){
+                    Toast.makeText(context,getString(R.string.no_file,bstatfile),Toast.LENGTH_SHORT);
+                    break;
+                }
+                if((level==100)&&(plugged!=0)) {
+                    //calibrate
+                    final LayoutInflater factory = LayoutInflater.from(context);
+                    final View cDialog = factory.inflate(R.layout.calib_dialog,null);
+                    final CheckBox sw = (CheckBox) cDialog.findViewById(R.id.sw);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle(getString(R.string.mt_calib))
+                            .setView(cDialog)
+                            .setMessage(getString(R.string.mt_calib_ok))
+                            .setNegativeButton(getString(R.string.cancel),
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    }
+                            )
+                            .setPositiveButton(getString(R.string.mt_calib),
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            StringBuilder sb=new StringBuilder();
+                                            sb.append("busybox rm -f "+bstatfile+";\n");
+                                            if (sw.isChecked()) {
+                                                mPreferences.edit().putBoolean("booting",true).commit();
+                                                sb.append("reboot;\n");
+                                            }
+                                            Helpers.shExec(sb,context,true);
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+                else{
+                    new AlertDialog.Builder(context).setTitle(getString(R.string.mt_calib)).setMessage(getString(R.string.mt_calib_nok))
+                            .setPositiveButton(getString(R.string.ok),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {}
+                                    }).create().show();
+                }
+                break;
         }
         return true;
     }
@@ -173,6 +230,7 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
 
         SeekBar mBlxSlider = (SeekBar) view.findViewById(R.id.blx_slider);
         if (new File(BLX_PATH).exists()) {
+            no_settings=false;
             mBlxSlider.setMax(100);
 
             mBlxVal = (TextView) view.findViewById(R.id.blx_val);
@@ -200,29 +258,27 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
         }
         mFastChargePath=Helpers.fastcharge_path();
         if (mFastChargePath!=null) {
-
+            no_settings=false;
             mFastchargeOnBoot = (Switch) view.findViewById(R.id.fastcharge_sob);
             mFastchargeOnBoot.setChecked(mPreferences.getBoolean(PREF_FASTCHARGE, Helpers.readOneLine(mFastChargePath).equals("1")));
             mFastchargeOnBoot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton v,boolean checked) {
                     mPreferences.edit().putBoolean(PREF_FASTCHARGE,checked).apply();
+                    final NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                     if (checked){
                         new CMDProcessor().su.runWaitFor("busybox echo 1 > " + mFastChargePath);
-                        CharSequence contentTitle = context.getText(R.string.fast_charge_notification_title);
-                        CharSequence contentText = context.getText(R.string.fast_charge_notification_message);
                         Notification n = new Notification.Builder(context)
-                                .setAutoCancel(true)
-                                .setContentTitle(contentTitle)
-                                .setContentText(contentText)
-                                .setSmallIcon(R.drawable.ic_notify)
+                                .setContentTitle(context.getText(R.string.app_name))
+                                .setContentText(context.getText(R.string.fast_charge_notification_title))
+                                .setTicker(context.getText(R.string.fast_charge_notification_title))
+                                .setSmallIcon(R.drawable.ic_fastcharge)
                                 .setWhen(System.currentTimeMillis()).getNotification();
-                        NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                        nm.notify(1337, n);//1337
+                        //n.flags = Notification.FLAG_NO_CLEAR;
+                        nm.notify(1337, n);
                     }
                     else{
                         new CMDProcessor().su.runWaitFor("busybox echo 0 > " + mFastChargePath);
-                        NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                         nm.cancel(1337);
                     }
                 }
@@ -232,7 +288,10 @@ public class BatteryInfo extends Fragment implements SeekBar.OnSeekBarChangeList
             LinearLayout mpart = (LinearLayout) view.findViewById(R.id.fastcharge_layout);
             mpart.setVisibility(LinearLayout.GONE);
          }
-
+        if(no_settings) {
+            LinearLayout ns = (LinearLayout) view.findViewById(R.id.no_settings);
+            ns.setVisibility(LinearLayout.VISIBLE);
+        }
 
         return view;
     }

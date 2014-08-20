@@ -9,81 +9,61 @@ import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.infamous.performance.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class PackAdapter extends BaseAdapter {
+public class PackAdapter extends ArrayAdapter<PackItem> {
 
-    Activity context;
-    PackageManager packageManager;
-    ArrayList<String> pList;
+    private final ArrayList<PackItem> list;
+    private final Activity context;
 
-
-    public PackAdapter(Activity context,String pmList[], PackageManager packageManager) {
-        super();
+    public PackAdapter(Activity context, ArrayList<PackItem> list) {
+        super(context, R.layout.pack_item, list);
         this.context = context;
-        this.packageManager = packageManager;
-        this.pList= new ArrayList<String>(Arrays.asList(pmList));
+        this.list = list;
     }
-
-    private class ViewHolder {
-        TextView packRaw;
-        TextView packName;
-        ImageView imageView;
+    public void delItem(int p){
+        list.remove(p);
+        notifyDataSetChanged();
     }
-
-    public int getCount() {
-        return pList.size();
+    public ArrayList<PackItem> getList(){
+        return list;
     }
-    public void delItem(int position) {
-        pList.remove(position);
+    static class ViewHolder {
+        public TextView app,pack;
+        public ImageView image;
     }
-
-    public String getItem(int position) {
-        return pList.get(position);
-    }
-
-    public long getItemId(int position) {
-        return 0;
-    }
-
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        LayoutInflater inflater = context.getLayoutInflater();
-
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.pack_item, null);
-
-            holder = new ViewHolder();
-
-            holder.packRaw = (TextView) convertView.findViewById(R.id.packraw);
-            holder.packName = (TextView) convertView.findViewById(R.id.packname);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
-
-            convertView.setTag(holder);
-        }
-        else {
-            holder = (ViewHolder) convertView.getTag();
+        View rowView = convertView;
+        if (rowView == null) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            rowView = inflater.inflate(R.layout.pack_item, null);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.app = (TextView) rowView.findViewById(R.id.packname);
+            viewHolder.pack = (TextView) rowView.findViewById(R.id.packraw);
+            viewHolder.image = (ImageView) rowView.findViewById(R.id.icon);
+            rowView.setTag(viewHolder);
         }
 
-        PackageInfo packageInfo = null;
+        ViewHolder holder = (ViewHolder) rowView.getTag();
+        final String npack=list.get(position).getPackName();
+        holder.pack.setText(npack);
+        holder.app.setText(list.get(position).getAppName());
         try {
-            packageInfo = context.getPackageManager().getPackageInfo(getItem(position), 0);
-            holder.packRaw.setText(packageInfo.packageName);
-            holder.packName.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-            holder.imageView.setImageDrawable(packageManager.getApplicationIcon(packageInfo.applicationInfo));
-
-        } catch (PackageManager.NameNotFoundException e) {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(npack, 0);
+            holder.image.setImageDrawable(context.getPackageManager().getApplicationIcon(packageInfo.applicationInfo));
+        }
+        catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-
-        return convertView;
+        return rowView;
     }
+
+
 }

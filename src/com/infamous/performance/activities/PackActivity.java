@@ -3,13 +3,16 @@ package com.infamous.performance.activities;
 /**
  * Created by h0rn3t on 17.07.2013.
  */
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.pm.PackageManager;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,12 +31,12 @@ import com.infamous.performance.util.CMDProcessor;
 import com.infamous.performance.util.Helpers;
 import com.infamous.performance.util.PackAdapter;
 import com.infamous.performance.util.Constants;
+import com.infamous.performance.util.PackItem;
 
 
 public class PackActivity extends Activity implements Constants, OnItemClickListener,ActivityThemeChangeInterface {
 
-    PackageManager packageManager;
-
+    Context c=this;
     ListView packList;
     TextView packNames;
     Button applyBtn;
@@ -44,8 +47,8 @@ public class PackActivity extends Activity implements Constants, OnItemClickList
     private boolean mIsLightTheme;
     private String pack_path;
     private String pack_pref;
-    private String pmList[];
     private Boolean tip;
+    private ArrayList<PackItem> list = new ArrayList<PackItem>();
 
 
     @Override
@@ -55,10 +58,8 @@ public class PackActivity extends Activity implements Constants, OnItemClickList
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setTheme();
         setContentView(R.layout.pack_list);
-        pmList=new String[] {};
         Intent i=getIntent();
         tip=i.getBooleanExtra("mod",false);
-        packageManager = getPackageManager();
 
         packNames=(TextView)  findViewById(R.id.procNames);
         if(tip){
@@ -108,20 +109,22 @@ public class PackActivity extends Activity implements Constants, OnItemClickList
                 cr=new CMDProcessor().sh.runWaitFor("busybox echo `pm list packages -3 | cut -d':' -f2`");
             }
             if(cr.success()&& !cr.stdout.equals("")){
-                return cr.stdout;
+                for(String p:cr.stdout.split(" ")){
+                    list.add(new PackItem(p));
+                }
+                Collections.sort(list, new Comparator<PackItem>() {
+                    public int compare(PackItem s1, PackItem s2) {
+                        return s1.getAppName().compareTo(s2.getAppName());
+                    }
+                });
             }
-            else{
-                return null;
-            }
+            return null;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            if(result!=null)
-                pmList =result.split(" ");
-            linlaHeaderProgress.setVisibility(View.GONE);
-            if(pmList.length>0){
-                PackAdapter adapter = new PackAdapter(PackActivity.this, pmList, packageManager);
+            if(list.size()>0){
+                PackAdapter adapter = new PackAdapter(PackActivity.this, list);
                 packList.setAdapter(adapter);
                 linTools.setVisibility(View.VISIBLE);
                 linNopack.setVisibility(View.GONE);
@@ -130,6 +133,7 @@ public class PackActivity extends Activity implements Constants, OnItemClickList
                 linTools.setVisibility(View.GONE);
                 linNopack.setVisibility(View.VISIBLE);
             }
+            linlaHeaderProgress.setVisibility(View.GONE);
         }
 
         @Override
@@ -147,7 +151,7 @@ public class PackActivity extends Activity implements Constants, OnItemClickList
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long row) {
         final String told=packNames.getText().toString();
-        final String pn= (String) parent.getItemAtPosition(position);
+        final String pn=list.get(position).getPackName();
         if(told.equals("")){
             packNames.setText(pn);
         }

@@ -21,6 +21,8 @@ package com.infamous.performance.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.infamous.performance.util.Constants;
 
@@ -28,7 +30,13 @@ import com.infamous.performance.util.Constants;
 public class BootReceiver extends BroadcastReceiver implements Constants {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent service = new Intent(context, BootService.class);
-        context.startService(service);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (intent.getAction().equals(Intent.ACTION_SHUTDOWN)||intent.getAction().equals("android.intent.action.QUICKBOOT_POWEROFF")) {
+            preferences.edit().putBoolean("booting",true).commit();
+        }
+        else if(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+            Intent service = new Intent(context, BootService.class);
+            context.startService(service);
+        }
     }
 }

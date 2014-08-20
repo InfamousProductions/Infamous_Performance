@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +77,7 @@ public class BuildPropEditor extends Activity implements Constants, AdapterView.
         setTheme();
         setContentView(R.layout.prop_view);
 
-        new CMDProcessor().sh.runWaitFor("busybox mkdir -p "+dn );
+        new File(dn).mkdirs();
         buildname = (Build.DISPLAY.equals("")||Build.DISPLAY==null) ? buildname + ".prop" : buildname + "-" + Build.DISPLAY.replace(" ", "_") + ".prop";
 
         if(!new File(dn+"/"+buildname).exists()){
@@ -116,6 +117,10 @@ public class BuildPropEditor extends Activity implements Constants, AdapterView.
 
         tools.setVisibility(View.GONE);
         search.setVisibility(View.GONE);
+        Switch bootset= (Switch) findViewById(R.id.applyAtBoot);
+        bootset.setVisibility(View.GONE);
+        TextView tbootset=(TextView) findViewById(R.id.set_on_boot);
+        tbootset.setVisibility(View.GONE);
 
         new GetPropOperation().execute();
 

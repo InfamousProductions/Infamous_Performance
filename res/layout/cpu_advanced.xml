@@ -25,6 +25,29 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="oc_live"
+        android:title="@string/liveoc">
+        <Preference
+            android:key="pref_oc_val"
+            android:title="@string/oc_value"/>
+        <ListPreference
+            android:dialogTitle="@string/oc_target_low"
+            android:key="pref_oc_low"
+            android:persistent="true"
+            android:title="@string/oc_target_low"/>
+        <ListPreference
+            android:dialogTitle="@string/oc_target_high"
+            android:key="pref_oc_high"
+            android:persistent="true"
+            android:title="@string/oc_target_high"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="oc_live_boot"
+            android:summary="@string/ps_blx_boot"
+            android:title="@string/sob"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="mpdecision"
         android:title="@string/mpdecision">
         <CheckBoxPreference
@@ -36,6 +59,16 @@
             android:key="mpdecision_boot"
             android:summary="@string/ps_dsync"
             android:title="@string/sob"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="msmhotplug"
+        android:title="@string/msmhotplug">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_msmhotplug"
+            android:summary="@string/ps_dsync"
+            android:title="@string/pt_msmhotplug"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -63,7 +96,6 @@
             android:dialogTitle="@string/pt_cpuquiet"
             android:key="pref_cpuquiet"
             android:persistent="true"
-            android:summary="@string/ps_cpuquiet"
             android:title="@string/pt_cpuquiet"/>
         <CheckBoxPreference
             android:defaultValue="false"
@@ -99,7 +131,6 @@
             android:dialogTitle="@string/pt_mc_ps"
             android:key="pref_mcps"
             android:persistent="true"
-            android:summary="@string/ps_mc_ps"
             android:title="@string/pt_mc_ps"/>
         <CheckBoxPreference
             android:defaultValue="false"
@@ -115,7 +146,6 @@
             android:dialogTitle="@string/pt_gpu_fmax"
             android:key="pref_gpu_fmax"
             android:persistent="true"
-            android:summary="@string/ps_gpu_fmax"
             android:title="@string/pt_gpu_fmax"/>
         <CheckBoxPreference
             android:defaultValue="false"
@@ -130,5 +160,33 @@
         <Preference
             android:key="pref_gpugov_set"
             android:title="@string/pt_gpugov_set"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="uv_krait"
+        android:title="@string/krait">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_krait_boost"
+            android:summary="@string/ps_krait_boost"
+            android:title="@string/pt_krait_boost"/>
+        <ListPreference
+            android:dialogTitle="@string/pt_krait_thres"
+            android:key="pref_krait_thres"
+            android:persistent="true"
+            android:title="@string/pt_krait_thres"/>
+        <Preference
+            android:key="pref_krait_lo"
+            android:summary="@string/ps_krait_lo"
+            android:title="@string/pt_krait_lo"/>
+        <Preference
+            android:key="pref_krait_hi"
+            android:summary="@string/ps_krait_hi"
+            android:title="@string/pt_krait_hi"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="krait_uv_boot"
+            android:summary="@string/ps_restore_boot"
+            android:title="@string/sob"/>
     </PreferenceCategory>
 </PreferenceScreen>

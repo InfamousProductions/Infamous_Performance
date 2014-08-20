@@ -81,8 +81,8 @@ public class SysctlEditor extends Activity implements Constants, AdapterView.OnI
         setTheme();
         setContentView(R.layout.prop_view);
 
+        new File(dn).mkdirs();
 
-        new CMDProcessor().sh.runWaitFor("busybox mkdir -p "+dn );
         if(new File(syspath+"sysctl.conf").exists()){
             new CMDProcessor().sh.runWaitFor("busybox cp /system/etc/sysctl.conf"+" "+dn+"/sysctl.conf" );
         }

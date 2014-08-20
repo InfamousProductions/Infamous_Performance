@@ -53,12 +53,8 @@ import java.io.File;
 public class Advanced extends PreferenceFragment implements OnSharedPreferenceChangeListener, Constants {
     SharedPreferences mPreferences;
 	private Preference mBltimeout,mViber,mPFK,mDynamicWriteBackActive,mDynamicWriteBackSuspend,mVM,mTouchScr;
-	private CheckBoxPreference mBltouch;
-
-    private CheckBoxPreference mBln,mDynamicWriteBackOn,mDsync,mWifiPM;
+    private CheckBoxPreference mBltouch,mBln,mDynamicWriteBackOn,mDsync,mWifiPM;
 	private ListPreference mReadAhead;
-	private int mSeekbarProgress;
-	private EditText settingText;
 	private String sreadahead;
     private String BLN_PATH,VIBE_PATH,WIFIPM_PATH;
     private Context context;
@@ -208,9 +204,7 @@ public class Advanced extends PreferenceFragment implements OnSharedPreferenceCh
                 return true;
         }
         else if (preference == mBltimeout){
-                String title = getString(R.string.bltimeout_title);
-                int currentProgress = Integer.parseInt(Helpers.readOneLine(BL_TIMEOUT_PATH));
-                openDialog(currentProgress, title, 0,5000, preference,BL_TIMEOUT_PATH, PREF_BLTIMEOUT);
+                openDialog(getString(R.string.bltimeout_title), 0,5000, preference,BL_TIMEOUT_PATH, PREF_BLTIMEOUT);
                 return true;
         }
         else if (preference == mBltouch){
@@ -237,9 +231,7 @@ public class Advanced extends PreferenceFragment implements OnSharedPreferenceCh
             return true;
         }
         else if (preference == mViber){
-            String title = getString(R.string.viber_title);
-            int currentProgress = Integer.parseInt(vib.get_val(VIBE_PATH));
-            openDialog(currentProgress, title, vib.get_min(),vib.get_max(), preference,VIBE_PATH, "pref_viber");
+            openDialog(getString(R.string.viber_title), vib.get_min(),vib.get_max(), preference,VIBE_PATH, "pref_viber");
             return true;
         }
         else if (preference == mPFK){
@@ -257,15 +249,11 @@ public class Advanced extends PreferenceFragment implements OnSharedPreferenceCh
                 return true;
         }
         else if (preference == mDynamicWriteBackActive) {
-                String title = getString(R.string.dynamic_writeback_active_title);
-                int currentProgress = Integer.parseInt(Helpers.readOneLine(DIRTY_WRITEBACK_ACTIVE_PATH));
-                openDialog(currentProgress, title, 0,5000, preference,DIRTY_WRITEBACK_ACTIVE_PATH, PREF_DIRTY_WRITEBACK_ACTIVE);
+                openDialog(getString(R.string.dynamic_writeback_active_title), 0,5000, preference,DIRTY_WRITEBACK_ACTIVE_PATH, PREF_DIRTY_WRITEBACK_ACTIVE);
                 return true;
         }
         else if (preference == mDynamicWriteBackSuspend) {
-                String title = getString(R.string.dynamic_writeback_suspend_title);
-                int currentProgress = Integer.parseInt(Helpers.readOneLine(DIRTY_WRITEBACK_SUSPEND_PATH));
-                openDialog(currentProgress, title, 0,5000, preference,DIRTY_WRITEBACK_SUSPEND_PATH, PREF_DIRTY_WRITEBACK_SUSPEND);
+                openDialog(getString(R.string.dynamic_writeback_suspend_title), 0,5000, preference,DIRTY_WRITEBACK_SUSPEND_PATH, PREF_DIRTY_WRITEBACK_SUSPEND);
                 return true;
         }
         else if (preference == mVM) {
@@ -372,16 +360,24 @@ public class Advanced extends PreferenceFragment implements OnSharedPreferenceCh
 		}
     }
 
-    public void openDialog(int currentProgress, String title, final int min, final int max, final Preference pref, final String path, final String key) {
+    public void openDialog(String title, final int min, final int max, final Preference pref, final String path, final String key) {
         Resources res = context.getResources();
         String cancel = res.getString(R.string.cancel);
         String ok = res.getString(R.string.ok);
+        final EditText settingText;
         LayoutInflater factory = LayoutInflater.from(context);
         final View alphaDialog = factory.inflate(R.layout.seekbar_dialog, null);
 
         final SeekBar seekbar = (SeekBar) alphaDialog.findViewById(R.id.seek_bar);
-
         seekbar.setMax(max-min);
+
+        int currentProgress =min;
+        if (key.equals("pref_viber")) {
+            currentProgress = Integer.parseInt(Helpers.readOneLine(path));
+        }
+        else{
+            currentProgress = Integer.parseInt(vib.get_val(path));
+        }
         if(currentProgress>max) currentProgress=max-min;
         else if(currentProgress<min) currentProgress=0;
         else currentProgress=currentProgress-min;
@@ -430,7 +426,7 @@ public class Advanced extends PreferenceFragment implements OnSharedPreferenceCh
         OnSeekBarChangeListener seekBarChangeListener = new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekbar, int progress, boolean fromUser) {
-				mSeekbarProgress = seekbar.getProgress();
+				final int mSeekbarProgress = seekbar.getProgress();
 				if(fromUser){
 					settingText.setText(Integer.toString(mSeekbarProgress+min));
 				}
@@ -475,8 +471,7 @@ public class Advanced extends PreferenceFragment implements OnSharedPreferenceCh
                         v=Helpers.readOneLine(path);
                     }
                     final SharedPreferences.Editor editor = mPreferences.edit();
-                    editor.putInt(key, Integer.parseInt(v));
-                    editor.commit();
+                    editor.putInt(key, Integer.parseInt(v)).commit();
                     pref.setSummary(v);
 
                 }

@@ -1,25 +1,27 @@
-
+##
 ### PERFORMANCE CONTROL ###
 
 function optimize(){
 sql3=`busybox which sqlite3`;
 db=0;
-for i in `busybox find /data -iname "*.db"`; do
-	$sql3 $i 'VACUUM;';
-	db=`busybox expr $db + 1`;
-done;
+if busybox [ -d "/data" ]; then
+    for i in `busybox find /data -iname "*.db"`; do
+	    $sql3 $i 'VACUUM;';
+	    db=`busybox expr $db + 1`;
+    done;
+fi;
 if busybox [ -d "/dbdata" ]; then
 	for i in `busybox find /dbdata -iname "*.db"`; do
 		$sql3 $i 'VACUUM;';
 		db=`busybox expr $db + 1`;
 	done;
 fi;
-if busybox [ -d "/system" ]; then
-	for i in `busybox find /system -iname "*.db"`; do
-		$sql3 $i 'VACUUM;';
-		db=`busybox expr $db + 1`;
-	done;
-fi;
+#if busybox [ -d "/system" ]; then
+#	for i in `busybox find /system -iname "*.db"`; do
+#		$sql3 $i 'VACUUM;';
+#		db=`busybox expr $db + 1`;
+#	done;
+#fi;
 if busybox [ -d "/datadata" ]; then
 	for i in `busybox find /datadata -iname "*.db"`; do
 		$sql3 $i 'VACUUM;';

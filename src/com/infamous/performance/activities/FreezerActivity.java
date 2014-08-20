@@ -10,13 +10,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +28,11 @@ import com.infamous.performance.util.ActivityThemeChangeInterface;
 import com.infamous.performance.util.CMDProcessor;
 import com.infamous.performance.util.Constants;
 import com.infamous.performance.util.PackAdapter;
+import com.infamous.performance.util.PackItem;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class FreezerActivity extends Activity implements Constants, AdapterView.OnItemClickListener,ActivityThemeChangeInterface {
@@ -40,13 +43,11 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
     private LinearLayout linlaHeaderProgress;
     private LinearLayout linNopack,llist;
     private TextView itxt;
-    private String pmList[];
-    private PackageManager packageManager;
+    private ArrayList<PackItem> list = new ArrayList<PackItem>();
     private ListView packList;
     private PackAdapter adapter;
     private int curpos;
     private Boolean freeze;
-    private String  packs;
     private String pn;
     private String titlu;
     private ProgressDialog progressDialog;
@@ -61,10 +62,6 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
 
         Intent i=getIntent();
         freeze=i.getBooleanExtra("freeze",false);
-        packs=i.getStringExtra("packs");
-
-        pmList=new String[] {};
-        packageManager = getPackageManager();
 
         linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
         linNopack = (LinearLayout) findViewById(R.id.noproc);
@@ -91,7 +88,7 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long row) {
-        pn = (String) parent.getItemAtPosition(position);
+        pn=list.get(position).getPackName();
         curpos=position;
         if(freeze) {
             makedialog(titlu,getString(R.string.freeze_msg, pn));
@@ -103,23 +100,13 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(!freeze) return false;
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.freezer_menu, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.freez_sys) {
-            if(packs.equals("sys")) return false;
-            packs="sys";
-        }
-        if (item.getItemId() == R.id.freez_usr) {
-            if(packs.equals("usr")) return false;
-            packs="usr";
-        }
-        new GetPacksOperation().execute();
+
         return true;
     }
 
@@ -131,43 +118,48 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
                 cr=new CMDProcessor().sh.runWaitFor("busybox echo `pm list packages -d | cut -d':' -f2`");
             }
             else{
-                if(packs.equals("sys")){
+                cr=new CMDProcessor().sh.runWaitFor("busybox echo `pm list packages -e | cut -d':' -f2`");
+                /*if(packs.equals("sys")){
                     cr=new CMDProcessor().sh.runWaitFor("busybox echo `pm list packages -s -e | cut -d':' -f2`");
                 }
                 else{
                     cr=new CMDProcessor().sh.runWaitFor("busybox echo `pm list packages -3 -e | cut -d':' -f2`");
-                }
+                }*/
             }
-            if(cr.success()&& !cr.stdout.equals(""))
-                return cr.stdout;
+            list.clear();
+            if(cr.success()&& !cr.stdout.equals("")){
+                    for(String p:cr.stdout.split(" ")){
+                        list.add(new PackItem(p));
+                    }
+                    Collections.sort(list, new Comparator<PackItem>() {
+                        public int compare(PackItem s1, PackItem s2) {
+                            return s1.getAppName().compareTo(s2.getAppName());
+                        }
+                    });
+            }
             return null;
+
         }
 
         @Override
         protected void onPostExecute(String result) {
-            if(result!=null)
-                pmList =result.split(" ");
-            linlaHeaderProgress.setVisibility(View.GONE);
-            if(pmList.length>0){
-                adapter = new PackAdapter(FreezerActivity.this, pmList, packageManager);
+
+            if(list.size()>0){
+                adapter = new PackAdapter(FreezerActivity.this, list);
                 packList.setAdapter(adapter);
                 linNopack.setVisibility(View.GONE);
                 llist.setVisibility(LinearLayout.VISIBLE);
                 if(!freeze){
-                    itxt.setText(getString(R.string.ps_unfreeze));
+                    itxt.setText(getString(R.string.pt_unfreeze));
                 }
                 else{
-                    if(packs.equals("sys")){
-                        itxt.setText(getString(R.string.mt_system_packs));
-                    }
-                    else{
-                        itxt.setText(getString(R.string.mt_user_packs));
-                    }
+                    itxt.setText(getString(R.string.pt_freeze));
                 }
             }
             else{
                 linNopack.setVisibility(View.VISIBLE);
             }
+            linlaHeaderProgress.setVisibility(View.GONE);
         }
 
         @Override
@@ -241,17 +233,13 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
         protected String doInBackground(String... params) {
             CMDProcessor.CommandResult cr;
             if(freeze){
-                cr=new CMDProcessor().su.runWaitFor("pm disable "+pn+" 2> /dev/null");
+                cr = new CMDProcessor().su.runWaitFor("pm disable " + pn+ " 2> /dev/null");
             }
             else{
-                cr=new CMDProcessor().su.runWaitFor("pm enable "+pn+" 2> /dev/null");
+                cr = new CMDProcessor().su.runWaitFor("pm enable " + pn+ " 2> /dev/null");
             }
-            if(cr.success()){
-                return "ok";
-            }
-            else{
-                return null;
-            }
+            if(cr.success()){ return "ok";}
+            else{return "nok";}
         }
 
         @Override
@@ -261,7 +249,6 @@ public class FreezerActivity extends Activity implements Constants, AdapterView.
             }
             if(result.equals("ok")){
                 adapter.delItem(curpos);
-                adapter.notifyDataSetChanged();
                 if(adapter.isEmpty()){
                     llist.setVisibility(LinearLayout.GONE);
                     linNopack.setVisibility(View.VISIBLE);

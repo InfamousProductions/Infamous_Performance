@@ -229,7 +229,7 @@ public class iResidualsActivity extends Activity implements Constants, AdapterVi
             else{
                 nofiles.setVisibility(View.GONE);
                 tools.setVisibility(View.VISIBLE);
-                adapter = new FileArrayAdapter(iResidualsActivity.this,R.layout.file_view, dir);
+                adapter = new FileArrayAdapter(iResidualsActivity.this,R.layout.file_item, dir);
                 packList.setAdapter(adapter);
             }
 

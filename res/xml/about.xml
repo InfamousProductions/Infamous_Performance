@@ -25,7 +25,7 @@
 			rb:githubLink="@string/github_ioap"
 			rb:twitterHandle="jamison904"
 			rb:googleLink="@string/google_ioap"
-			rb:emailDev="infamousrom@gmail.com"/>
+			rb:emailDev="james.jamison85@gmail.com"/>
 
 	</PreferenceCategory>
 
@@ -41,6 +41,7 @@
 			rb:googleLink="@string/gplus_ioap"
 			rb:emailDev="james.jamison85@gmail.com"/>
 		
+<!--
 		<com.infamous.performance.widget.DeveloperPreference
 			android:title="mrimp"
 			rb:nameDev="mrimp"
@@ -135,7 +136,7 @@
 			rb:twitterHandle="marcoxx626"
 			rb:githubLink="@string/github_marcoxx626"
 			rb:googleLink="@string/gplus_ioap"
-			rb:emailDev="marcoxx626@gmail.com"/>
+			rb:emailDev="marcoxx626@gmail.com"/> -->
 		
 
 	</PreferenceCategory>
