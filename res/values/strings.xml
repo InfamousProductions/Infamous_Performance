@@ -400,6 +400,7 @@ Copyright (C) 2012  James Roberts
     <string name="pt_update">What\'s new</string>
     <string name="ps_zram_info">Zram must be stopped in order to change disk size</string>
     <!-- beta2-->
+    <string name="mem_info">Memory info</string>
     <!-- 2.1.10-->
     <string name="prefcat_wifi_pm">WiFi SLEEP POWER MODE</string>
     <string name="pt_wifi_pm">WiFi PM</string>
@@ -424,6 +425,7 @@ Copyright (C) 2012  James Roberts
         <item>On</item>
         <item>Agressive</item>
     </string-array>
+    <string name="ps_gpu_fmax">Current: %s</string>
     <string name="pt_gpu_fmax">GPU maximum frequency</string>
     <string name="pt_gpugov_set">GPU Control</string>
     <!-- 2.1.13-->
