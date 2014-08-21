@@ -21,12 +21,6 @@ Copyright (C) 2012  James Roberts
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Preference android:key="version_info"/>
-
-    <Preference android:key="pref_donate"
-        android:summary="@string/paypal"
-        android:title="@string/donor"/>
-
     <Preference
         android:key="visible_tabs"
         android:title="@string/pt_show_tabs"/>
@@ -62,5 +56,12 @@ Copyright (C) 2012  James Roberts
         android:defaultValue="#ff808080"
         android:key="widget_text_color"
         android:title="@string/pt_widget_text_color"/>
+
+    <Preference android:key="version_info"/>
+
+    <Preference android:key="pref_store"
+        android:summary="@string/dev_store"
+        android:title="@string/listings"/>
+
 
 </PreferenceScreen>

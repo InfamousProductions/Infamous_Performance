@@ -211,7 +211,50 @@ public class PCSettings extends PreferenceActivity implements Constants, Activit
         else if(key.equals("br_op")){
             startActivity(new Intent(this, BackupRestore.class));
         }
-        
+        else if(key.equals("version_info")){
+            if(isupdate && !NO_UPDATE) {
+                LayoutInflater factory = LayoutInflater.from(this);
+                final View editDialog = factory.inflate(R.layout.ver_dialog, null);
+                final TextView msg = (TextView) editDialog.findViewById(R.id.msg);
+                msg.setText(det);
+                new AlertDialog.Builder(c)
+                        .setView(editDialog)
+                        .setTitle(getString(R.string.pt_update))
+                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int which) {
+                            }
+                        })
+                        .setPositiveButton(getString(R.string.btn_download), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(isDownloadManagerAvailable(c) ){
+                                    String url = URL+TAG+".apk";
+                                    DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                                    //request.setDescription("");
+                                    request.setTitle(TAG + " " + ver);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                                        request.allowScanningByMediaScanner();
+                                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                                    }
+                                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, TAG+"-"+ver+".apk");
+                                    DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                                    manager.enqueue(request);
+                                }
+                                else{
+                                    Toast.makeText(c, getString(R.string.no_download_manager), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        })
+                        .create()
+                        .show();
+            }
+            return true;
+        }
+        else if(key.equals("pref_store")){
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PLAYSTORE)));
+        }
+        return false;
     }
 
     @Override

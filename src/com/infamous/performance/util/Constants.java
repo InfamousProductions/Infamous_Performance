@@ -20,8 +20,8 @@ package com.infamous.performance.util;
 
 public interface Constants {
 
-    public static final String TAG = "PerformanceControl";
-    public static final String VERSION_NUM = "3.6";
+    public static final String TAG = "InfamousPerformance";
+    public static final String VERSION_NUM = "4.0";
     //hide flashing kernel/recovery options
     // NO_FLASH=true > hide flash options
     // NO_FLASH=false > show flash options
@@ -30,7 +30,8 @@ public interface Constants {
     //hide builtin update
     // NO_UPDATE=true > hide update
     // NO_UPDATE=false > show update
-    public static final String URL = "http://m.softutil.ro/pc/";
+    public static final String URL = "https://play.google.com/store/apps/details?id=com.infamous.performance";
+    public static final String PLAYSTORE="https://play.google.com/store/apps/developer?id=Infamous+Productions";
     // CPU settings
     public static final String CPU_ON_PATH = "/sys/devices/system/cpu/cpu0/online";
     public static final String CUR_CPU_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";

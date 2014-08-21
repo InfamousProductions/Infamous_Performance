@@ -20,12 +20,11 @@
 
 		<com.infamous.performance.widget.DeveloperPreference
 			android:title="Infamous Development"
-			rb:nameDev="Infamous"
+			rb:nameDev="Infamous Productions"
 			rb:facebookLink="@string/facebook_ioap"
-			rb:githubLink="@string/github_ioap"
-			rb:twitterHandle="jamison904"
+			rb:githubLink="@string/github_performance"
 			rb:googleLink="@string/google_ioap"
-			rb:emailDev="james.jamison85@gmail.com"/>
+			rb:emailDev="infamousrom@gmail.com"/>
 
 	</PreferenceCategory>
 
@@ -38,7 +37,7 @@
 			rb:nameDev="Jamison904"
 			rb:twitterHandle="jamison904"
 			rb:githubLink="@string/github_jamison904"
-			rb:googleLink="@string/gplus_ioap"
+			rb:googleLink="@string/gplus_jamison904"
 			rb:emailDev="james.jamison85@gmail.com"/>
 		
 <!--

@@ -445,8 +445,8 @@ Copyright (C) 2012  James Roberts
     <string name="pt_krait_lo">Voltage for lower frequencies</string>
     <string name="ps_krait_lo">Apply for frequencies lower than threshold | Current: %s μV</string>
     <!--2.1.16-->
-    <string name="donor">Donate with PayPal</string>
-    <string name="paypal">If you find this app useful</string>
+    <string name="dev_store">Infamous Productions</string>
+    <string name="listings">Check out our other apps on the playstore</string>
     <!--2.1.18-->
     <string name="liveoc">Live OC</string>
     <string name="oc_value">OC Value (%)</string>
@@ -479,7 +479,7 @@ Copyright (C) 2012  James Roberts
     <string name="restore_bkup_title">Restore Backup</string>
     <string name="restore_bkup">%s will be restored. Continue?</string>
 	<!--Infamous-->
-	<string name="devs">The Crew</string>
+	<string name="devs">The Developer</string>
 	<string name="iokp">Infamous Open Kang Project</string>
     <string name="iokp_website_title">Infamous Website</string>
     <string name="iokp_website_summary">Our Forum and News</string>
@@ -518,12 +518,13 @@ Copyright (C) 2012  James Roberts
     <string name="about_ioap_summary">@null</string>
     <string name="contributors_title">Contributor(s)</string>
     <string name="facebook_ioap">https://www.facebook.com/infamousdevelopment</string>
-    <string name="gplus_ioap">https://plus.google.com/communities/106093160117198923912</string>
+    <string name="gplus_jamison904">https://plus.google.com/u/0/+JamesJamison</string>
     <string name="name_ioap">Infamous</string>
-    <string name="github_ioap">https://github.com/jamison904</string>
+    <string name="github_performance">https://github.com/InfamousProductions/Infamous_Performance</string>
     <string name="email_ioap">infamousrom@gmail.com</string>
     <string name="twitter_ioap">Jamison904</string>
     <string name="ioap_site_title">Infamous Website</string>
-    <string name="ioap_site_summary">Visit the Infamous website for latest news.</string>
+    <string name="ioap_site_summary">Visit the Infamous production webpage for all our apps.</string>
     <string name="google_ioap">https://plus.google.com/communities/106093160117198923912</string>
+    <string name="playstore">https://play.google.com/store/apps/developer?id=Infamous+Productions</string>
 </resources>
