@@ -20,9 +20,10 @@
 
 		<com.infamous.performance.widget.DeveloperPreference
 			android:title="Infamous Development"
-			rb:nameDev="Infamous Productions"
+			rb:nameDev="Infamous"
 			rb:facebookLink="@string/facebook_ioap"
 			rb:githubLink="@string/github_performance"
+			rb:twitterHandle="jamison904"
 			rb:googleLink="@string/google_ioap"
 			rb:emailDev="infamousrom@gmail.com"/>
 

@@ -523,8 +523,8 @@ Copyright (C) 2012  James Roberts
     <string name="github_performance">https://github.com/InfamousProductions/Infamous_Performance</string>
     <string name="email_ioap">infamousrom@gmail.com</string>
     <string name="twitter_ioap">Jamison904</string>
-    <string name="ioap_site_title">Infamous Website</string>
-    <string name="ioap_site_summary">Visit the Infamous production webpage for all our apps.</string>
+    <string name="ioap_site_title">Infamous Productions</string>
+    <string name="ioap_site_summary">Visit our webpage for all our apps and how to do it yourself.</string>
     <string name="google_ioap">https://plus.google.com/communities/106093160117198923912</string>
     <string name="playstore">https://play.google.com/store/apps/developer?id=Infamous+Productions</string>
 </resources>
