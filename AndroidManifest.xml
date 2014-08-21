@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.infamous.performance"
-          android:versionCode="4"
-          android:versionName="3.0">
+          android:versionCode="6"
+          android:versionName="4.0">
 
-    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"/>
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.infamous.performance.activities.checkSU"/>
+        <activity android:name="com.infamous.performance.activities.BackupRestore"/>
+        <activity android:name="com.infamous.performance.activities.checkSU" android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.infamous.performance.activities.MemUsageActivity"/>
         <activity android:name="com.infamous.performance.activities.PCSettings"/>
         <activity android:name="com.infamous.performance.activities.PackActivity"/>
@@ -47,9 +48,11 @@
         <activity android:name="com.infamous.performance.activities.iResidualsActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.infamous.performance.activities.SysctlEditor" android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-        <receiver android:name=".service.BootReceiver">
+        <receiver android:name=".service.BootReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.QUICKBOOT_POWEROFF" />
             </intent-filter>
         </receiver>
         <receiver
