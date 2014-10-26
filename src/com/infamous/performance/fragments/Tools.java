@@ -53,6 +53,7 @@ import com.infamous.performance.activities.SysctlEditor;
 import com.infamous.performance.util.CMDProcessor;
 import com.infamous.performance.util.Constants;
 import com.infamous.performance.util.Helpers;
+import com.infamous.performance.*;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -397,6 +398,11 @@ public class Tools extends PreferenceFragment implements OnSharedPreferenceChang
             Button theButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
             theButton.setOnClickListener(new opListener(alertDialog,4));
         }
+		
+		else if (key.equals("pref_log")){
+            Intent intent = new Intent(context, LogcatActivity.class);
+            startActivity(intent);
+		}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

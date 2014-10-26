@@ -21,7 +21,7 @@ package com.infamous.performance.util;
 public interface Constants {
 
     public static final String TAG = "InfamousPerformance";
-    public static final String VERSION_NUM = "4.0";
+    public static final String VERSION_NUM = "4.5";
     //hide flashing kernel/recovery options
     // NO_FLASH=true > hide flash options
     // NO_FLASH=false > show flash options

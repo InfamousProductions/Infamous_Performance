@@ -4,12 +4,6 @@ File contain partitions layout for flashing kernel & recovery
 -->
 <devices>
     <device>
-        <model>SM-N910T</model> <!-- Note 4 -->
-        <kernel>/dev/block/mmcblk0p17</kernel>
-        <recovery>/dev/block/mmcblk0p18</recovery>
-        <cache>/dev/block/mmcblk0p25</cache>
-    </device>
-    <device>
         <model>GT-I9001,Galaxy S Plus,GT-I8150,SGH-T679</model> <!-- GALAXY S PLUS,GALAXY W,Galaxy Exhibit -->
         <kernel>/dev/block/mmcblk0p8</kernel>
         <recovery>/dev/block/mmcblk0p13</recovery>
@@ -27,9 +21,9 @@ File contain partitions layout for flashing kernel & recovery
         <recovery>/dev/block/mmcblk0p6</recovery>
         <cache>/dev/block/mmcblk0p8</cache>
     </device>
-    <!-- GALAXY S IV,NEXUS 4,NEXUS 5,XPERIA Z,Samsung Galaxy S4 SGH-M919, SM-N900T, SM-G900T GALAXY S4 Mini-->
+    <!-- GALAXY S IV,NEXUS 4,NEXUS 5,XPERIA Z,Samsung Galaxy S4 SGH-M919, SM-N900T, SM-G900T GALAXY S4 Mini, Note4 tmo-->
     <device>
-        <model>GT-I9505,Nexus 4,Nexus 5,LG-E960,C6603,SGH-M919,SM-N900T,SM-G900T,GT-I9190,GT-I9195</model>
+        <model>GT-I9505,Nexus 4,Nexus 5,LG-E960,C6603,SGH-M919,SM-N900T,SM-G900T,GT-I9190,GT-I9195,SM-N910T</model>
         <kernel>/dev/block/platform/msm_sdcc.1/by-name/boot</kernel>
         <recovery>/dev/block/platform/msm_sdcc.1/by-name/recovery</recovery>
         <cache>/dev/block/platform/msm_sdcc.1/by-name/cache</cache>
