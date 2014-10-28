@@ -27,6 +27,9 @@ Copyright (C) 2012  James Roberts
 		<Preference
             android:key="pref_log"
             android:title="@string/log_title"/>
+		<Preference
+            android:key="pref_apk"
+            android:title="@string/apk_title"/>
 	</PreferenceCategory>
 		<PreferenceCategory
 			android:key="category_logs"

@@ -403,9 +403,16 @@ public class Tools extends PreferenceFragment implements OnSharedPreferenceChang
             Intent intent = new Intent(context, LogcatActivity.class);
             startActivity(intent);
 		}
+		
+		else if (key.equals("pref_apk")){
+            Intent intent = new Intent(context, ApkActivity.class);
+            startActivity(intent);
+		}
+		
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
+	
 
     class opListener implements View.OnClickListener {
         private final Dialog dialog;

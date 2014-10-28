@@ -142,4 +142,11 @@ Copyright (C) 2012  James Roberts
 	<color name="android_theme_tag_color_15">#FF009933</color>
 	<color name="android_theme_tag_color_16">#FFCC3399</color>
 	<color name="android_theme_tag_color_17">#FFFFCC00</color>
+
+<!-- apktool -->
+
+<color name="background_tvpath_blue">#00ffffff</color>
+    <color name="background_tvpath_grey">#88626262</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_tvpath_black">#00000000</color>
 </resources>

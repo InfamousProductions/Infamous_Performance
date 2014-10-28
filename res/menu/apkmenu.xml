@@ -1,0 +1,25 @@
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item 
+			android:id="@+id/setting" 
+			android:title="@string/setting"></item>
+		<item 
+		    android:id="@+id/about" 
+			android:title="@string/download"></item>
+		<item 
+		    android:id="@+id/refresh"
+			android:title="@string/refresh"></item>
+		<item 
+		    android:id="@+id/task"
+			android:title="@string/tasks"></item>
+		<!--
+		<item 
+		    android:id="@+id/rom"
+			android:title="@string/makerom"></item>
+		<item 
+		    android:id="@+id/donate" 
+			android:title="@string/donate"></item> -->
+		<item 
+			android:id="@+id/exit" 
+			android:title="@string/exit"></item>
+    </menu>
