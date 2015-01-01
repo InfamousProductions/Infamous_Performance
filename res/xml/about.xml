@@ -48,7 +48,7 @@
 			rb:githubLink="@string/github_mrimp"
 			rb:googleLink="@string/gplus_mrimp"
 			rb:emailDev="mrimp@day-off.net"/>
-		
+		<!--
 		<com.infamous.performance.widget.DeveloperPreference
 			android:title="Mdjmatt604"
 			rb:nameDev="djmatt604"
@@ -137,7 +137,7 @@
 			rb:googleLink="@string/gplus_ioap"
 			rb:emailDev="marcoxx626@gmail.com"/>
 		
-
+-->
 	</PreferenceCategory>
 
 </PreferenceScreen>
